@@ -1,0 +1,31 @@
+- extends 'layout.slim'
+- from 'helpers.slim' import flashed
+
+- block content
+  = flashed()
+  p
+    strong Name:
+  p = post.name
+
+  p
+    strong Title:
+  p = post.title
+
+  p
+    strong Content:
+  p = post.content
+
+  p
+    strong Tags:
+  p
+    = post.tags and post.tags.split()|join(', ') or ""
+  a href="{{ url_for('.edit', id=post.id) }}" class="btn btn-primary btn-small" Edit
+  a href="{{ url_for('.index') }}" class="btn btn-primary btn-small" Back
+
+  %hr
+  h3 Add a comment
+  - include 'post/_comment_form.slim'
+
+  %hr
+  h3 Comments
+  - include 'post/_show_comments.slim'

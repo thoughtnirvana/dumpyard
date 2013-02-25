@@ -1,0 +1,7 @@
+- extends 'layout.slim'
+
+- block content
+  .span6
+    h2 Creating new post
+    - include 'post/_post_form.slim'
+    a href="=url_for('.index')" class="btn btn-primary btn-small" Back

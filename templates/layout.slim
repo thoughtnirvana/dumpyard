@@ -1,0 +1,24 @@
+!5
+html lang="en"
+  head
+    / title Title
+    @block meta_tags
+    - assets filters='cssmin', output='css/packed.css', 'css/bootstrap.css', 'css/bootstrap-responsive.css', 'css/base.css'
+      link rel="stylesheet" type="text/css" href="=ASSET_URL"
+    @block styles
+    @block head
+
+  body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        %div.container-fluid
+          / a.brand href="#" Brand
+    - from 'helpers.slim' import flashed
+    .container-fluid.main-container
+      = flashed()
+      @block content
+      @block footer
+      %script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"
+      script
+        |!window.jQuery && document.write(unescape('%3Cscript src\="/static/js/jquery-1.7.min.js"%3E%3C/script%3E'))
+      @block scripts

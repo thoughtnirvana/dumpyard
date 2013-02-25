@@ -1,0 +1,27 @@
+- extends 'layout.slim'
+- from 'helpers.slim' import delete_button
+
+- block content
+  table class="table"
+    thead
+      tr
+        th Name
+        th Title
+        th Content
+        %th
+        %th
+        %th
+    tbody
+      - for post in object_list
+        tr
+          td = post.name
+          td = post.title
+          td = post.content
+          td
+            a.btn.btn-mini.btn-info href="{{ url_for('.show', id=post.id) }}" Show
+          td
+            a.btn.btn-mini.btn-info href="{{ url_for('.edit', id=post.id) }}" Edit
+          td
+            = delete_button(url_for('.delete', id=post.id), 'Delete')
+
+  a href="=url_for('.new')" class="btn btn-primary btn-small" New post
